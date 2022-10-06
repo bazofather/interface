@@ -11,7 +11,7 @@ interface BazofatherInterface
 
     public function setToken(string $token);
 
-    public function getBaseUrl();
+    public function getBaseUrl(): string;
 
     public function setBaseUrl(string $url);
 
