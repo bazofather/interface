@@ -13,11 +13,11 @@ class BazofatherBase implements BazofatherInterface
     protected string $version;
 
     /**
-     * Bale bot object
+     * Class Bot singleton object
      *
      * @var object
      */
-    protected object $botInstance;
+    protected static $instance = null;
 
     /**
      * Bale bot api token
@@ -72,6 +72,19 @@ class BazofatherBase implements BazofatherInterface
         //
     }
 
+    public function  __clone()
+    {
+        //
+    }
+
+    public static function getInstance()
+    {
+        if( is_null(self::$instance) ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
+
     public function setToken(string $token)
     {
         $this->token = $token;
@@ -112,11 +125,12 @@ class BazofatherBase implements BazofatherInterface
     public function setBaseUrl(string $url)
     {
         $this->base_api_url = $url;
+        return $this;
     }
 
     public function actions(): array
     {
-       return $this->actions;
+        return $this->actions;
     }
 
     public function addActions(array $action)
