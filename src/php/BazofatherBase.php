@@ -2,7 +2,7 @@
 
 namespace Bazofather\Interfaces\php;
 
-abstract class BazofatherBase
+abstract class BazofatherBase implements BazofatherInterface
 {
 
     /**
@@ -10,28 +10,28 @@ abstract class BazofatherBase
      *
      * @var string
      */
-    private $version;
+    private string $version;
 
     /**
      * Bale bot object
      *
      * @var object
      */
-    private $botInstance;
+    private object $botInstance;
 
     /**
      * Bale bot api token
      *
      * @var string
      */
-    private $token;
+    private string $token;
 
     /**
      * Bale bot api url
      *
      * @var string
      */
-    private $base_api_url = 'https://tapi.bale.ai/';
+    private string $base_api_url;
 
     /**
      * Bale bot file api url
@@ -39,7 +39,7 @@ abstract class BazofatherBase
      *
      * @var string
      */
-    private $base_file_url  = 'https://tapi.bale.ai/file/';
+    private string $base_file_url;
 
     private $actions = [
         'sendMessage',
@@ -48,16 +48,16 @@ abstract class BazofatherBase
         'getupdates',
         'setWebhook',
         'deleteWebhook',
-        'getme',
-        'SendPhoto',
-        'Sendaudio',
-        'Senddocument',
-        'Sendvideo',
-        'Sendvoice',
+        'getMe',
+        'sendPhoto',
+        'sendAudio',
+        'sendDocument',
+        'sendVideo',
+        'sendVoice',
         'sendLocation',
         'sendContact',
-        'getfile',
-        'getchat',
+        'getFile',
+        'getChat',
         'getChatAdministrators',
         'getChatMembersCount',
         'getChatMember',
@@ -69,6 +69,7 @@ abstract class BazofatherBase
 
     public function __construct()
     {
+        //
     }
 
     public function setToken(string $token)
@@ -82,7 +83,7 @@ abstract class BazofatherBase
         return $this->token;
     }
 
-    public function sendMessage()
+    public function sendMessage($chat_id)
     {
         $url = $this->action('sendMessage');
     }

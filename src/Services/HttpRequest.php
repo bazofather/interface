@@ -3,6 +3,8 @@
 namespace Bazofather\Interfaces\Services;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Config\FrameworkConfig;
+
 
 class HttpRequest
 {
@@ -11,7 +13,29 @@ class HttpRequest
     public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
+        $this->client = $client->withOptions([
+            'headers' => [
+                'Accept' => 'application/json',
+            ]
+        ]);
     }
+
+    // public function defaultConfig($config = []) 
+    // {
+    //     $this->client = $this->client->withOptions([
+    //         'headers' => [
+    //             'Accept' => 'application/json',
+    //         ]
+    //     ]);
+
+    // }
+
+    // return static function (FrameworkConfig $framework) {
+    //     $framework->httpClient()
+    //         ->defaultOptions()
+    //             ->header('User-Agent', 'My Fancy App')
+    //     ;
+    // };
 
     public function get($url, $params = [],  $headers = []): array
     {
@@ -24,13 +48,17 @@ class HttpRequest
         );
 
         $statusCode = $response->getStatusCode();
-
+        $contentType = $response->getHeaders()['content-type'][0];
 
         $content = $response->getContent();
-        // $content = '{"id":521583, "name":"symfony-docs", ...}'
 
-        $result = $content;
-        return $result->toArray();
+        $result = [
+            'result' =>  $response->toArray(),
+            'content_type' => $contentType,
+            'status_code'  => $statusCode,
+        ];
+
+        return $result;
     }
 
     public function post($url, $headers = []): array
@@ -44,5 +72,15 @@ class HttpRequest
         );
 
         $statusCode = $response->getStatusCode();
+    }
+
+    public function withBearerAuth($token)
+    {
+        //
+    }
+
+    public function upload()
+    {
+        //
     }
 }
