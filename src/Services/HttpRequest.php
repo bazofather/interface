@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazofather\Interfaces\Services;
+namespace Bazofather\Interface\Services;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Config\FrameworkConfig;

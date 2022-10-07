@@ -27,7 +27,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Bazofather\\Interfaces\\": "./src"
+            "Bazofather\\Interface\\": "./src"
         }
     },
     "config": {
