@@ -2,7 +2,7 @@
 
 namespace Bazofather\Interface;
 
-class BazofatherBase implements BazofatherInterface
+class BazofatherBase implements BazofatherBaseInterface
 {
 
     /**
@@ -64,6 +64,11 @@ class BazofatherBase implements BazofatherInterface
     public function getBaseUrl(): string
     {
         return $this->base_api_url;
+    }
+
+    public function getUpdates(): array
+    {
+        return [];
     }
 
 }

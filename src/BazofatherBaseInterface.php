@@ -5,7 +5,7 @@ namespace Bazofather\Interface;
 /**
  * Common methods in all bazofather library
  */
-interface BazofatherInterface
+interface BazofatherBaseInterface
 {
     public function __construct();
     
@@ -20,4 +20,6 @@ interface BazofatherInterface
     public function getBaseUrl(): string;
 
     public function setBaseUrl(string $url);
+
+    public function getUpdates(): array;
 }

@@ -36,10 +36,14 @@ class test {
         $url = $this->action('sendMessage');
     }
 
-    public function action($action): string
+    public function actions(): array
     {
-        $acts = $this->validateAction($action);
-        return "$this->base_api_url/bot$this->token/$acts";
+        return $this->actions;
+    }
+
+    public function addAction(array $action)
+    {
+        $this->actions[] = $action;
     }
 
     public function validateAction(string $action): bool
@@ -47,15 +51,16 @@ class test {
         return in_array($action, $this->actions);
     }
 
-
-    public function actions(): array
+    public function action($action): string
     {
-        return $this->actions;
+        $acts = $this->validateAction($action);
+
+        return $this->doAction($acts);
     }
 
-    public function addActions(array $action)
+    public function doAction(string $action)
     {
-        $this->actions[] = $action;
+        return true;
     }
 
     public function sendText(int|string $chat_id, string $message)
