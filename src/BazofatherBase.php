@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazofather\Interfaces\php;
+namespace Bazofather\Interfaces;
 
 class BazofatherBase implements BazofatherInterface
 {
@@ -91,9 +91,20 @@ class BazofatherBase implements BazofatherInterface
         return $this;
     }
 
-    public function token(): string
+    public function getToken(): string
     {
         return $this->token;
+    }
+    
+    public function getBaseUrl(): string
+    {
+        return $this->base_api_url;
+    }
+
+    public function setBaseUrl(string $url)
+    {
+        $this->base_api_url = $url;
+        return $this;
     }
 
     public function sendMessage($chat_id)
@@ -112,21 +123,6 @@ class BazofatherBase implements BazofatherInterface
         return in_array($action, $this->actions);
     }
 
-    public function getToken()
-    {
-        return $this->token;
-    }
-
-    public function getBaseUrl(): string
-    {
-        return $this->base_api_url;
-    }
-
-    public function setBaseUrl(string $url)
-    {
-        $this->base_api_url = $url;
-        return $this;
-    }
 
     public function actions(): array
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bazofather\Interfaces\php;
+namespace Bazofather\Interfaces;
 
 /**
  * Common methods in all applications
