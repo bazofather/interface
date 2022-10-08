@@ -7,12 +7,6 @@ namespace Bazofather\Interface;
  */
 interface BazofatherCommonInterface
 {
-    // return available actions
-    public function actions(): array;
-
-    // add new actions to current actions
-    public function addActions(array $action);
-
     // send text message
     public function sendText(string|int $chat_id, string $message);
 

@@ -21,5 +21,15 @@ interface BazofatherBaseInterface
 
     public function setBaseUrl(string $url);
 
+    // return available actions
+    public function getActions(): array;
+
+    // add new actions to current actions
+    public function addActions(array $actions);
+
+    public function doAction(string $action);
+
+    public function validateAction(string $action): bool;
+
     public function getUpdates(): array;
 }

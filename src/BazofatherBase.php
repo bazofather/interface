@@ -26,6 +26,26 @@ class BazofatherBase implements BazofatherBaseInterface
      */
     protected string $base_api_url;
 
+    /** @var array
+     * available common actions
+     * add your custom actions in your library
+     */
+    protected array $actions = [
+        "sendText",
+        "sendMessages",
+        "sendImage",
+        "sendVideo",
+        "sendAudio",
+        "sendFile",
+        "sendVoice",
+        "sendLocation",
+        "sendContact",
+        "editTextMessage",
+        "deleteMessage",
+        "deleteMessages",
+        "getUpdates",
+    ];
+
     public function __construct()
     {
         //
@@ -64,6 +84,26 @@ class BazofatherBase implements BazofatherBaseInterface
     public function getBaseUrl(): string
     {
         return $this->base_api_url;
+    }
+
+    public function getActions(): array
+    {
+        return $this->actions;
+    }
+
+    public function doAction(string $action)
+    {
+        //
+    }
+
+    public function addActions(array $actions)
+    {
+        $this->actions[] = $actions;
+    }
+
+    public function validateAction(string $action): bool
+    {
+        return in_array($action, $this->actions);
     }
 
     public function getUpdates(): array
